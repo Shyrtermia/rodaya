@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rodaya conecta a estudiantes y propietarios para alquilar equipos audiovisuales por horas o días.">
+  <title>Rodaya | Alquila equipos para tu rodaje</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" id="inicio">
+    <div class="wrap topbar">
+      <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">▶</span> Rodaya</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menú</button>
+      <nav id="navigation" aria-label="Navegación principal">
+        <a href="#equipos">Explorar equipos</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+        <a class="button button-outline" href="#publicar">Publicar equipo</a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="hero">
+      <div class="wrap hero-layout">
+        <div>
+          <p class="eyebrow">Alquiler audiovisual para estudiantes</p>
+          <h1>Alquila equipos para tu <span>rodaje.</span></h1>
+          <p class="hero-copy">Encuentra cámaras, sonido e iluminación para tu próximo proyecto. Alquila por horas o días y coordina la entrega con el propietario.</p>
+          <div class="actions">
+            <a class="button" href="#equipos">Explorar equipos <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#publicar">Publicar equipo</a>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="camera.jpg" alt="Cámara fotográfica con lente intercambiable" width="900" height="630">
+        </figure>
+      </div>
+    </section>
+    <section class="section wrap" id="equipos" tabindex="-1">
+      <h2>Explora equipos</h2>
+      <p>Filtra el catálogo de demostración por categoría.</p>
+      <div class="filters" aria-label="Categorías de equipos">
+        <button type="button" data-filter="all" aria-pressed="true">Todos</button>
+        <button type="button" data-filter="camera" aria-pressed="false">Cámaras y lentes</button>
+        <button type="button" data-filter="audio" aria-pressed="false">Sonido</button>
+        <button type="button" data-filter="lighting" aria-pressed="false">Iluminación</button>
+      </div>
+      <p class="sr-only" id="filter-status" role="status"></p>
+      <div class="card-grid">
+        <article class="equipment-card" data-category="camera">
+          <p class="category">Cámaras y lentes</p>
+          <h3>Cámara mirrorless</h3>
+          <p>Cuerpo y lente para prácticas de fotografía o grabación.</p>
+          <p class="price">S/ 65 <span>por día</span></p>
+        </article>
+        <article class="equipment-card" data-category="audio">
+          <p class="category">Sonido</p>
+          <h3>Micrófonos inalámbricos</h3>
+          <p>Kit de dos micrófonos para entrevistas y diálogos.</p>
+          <p class="price">S/ 30 <span>por día</span></p>
+        </article>
+        <article class="equipment-card" data-category="lighting">
+          <p class="category">Iluminación</p>
+          <h3>Panel LED con trípode</h3>
+          <p>Luz continua para rodajes y sesiones en interiores.</p>
+          <p class="price">S/ 35 <span>por día</span></p>
+        </article>
+      </div>
+    </section>
+    <section class="section section-tint" id="como-funciona" tabindex="-1">
+      <div class="wrap">
+        <h2>Cómo funciona</h2>
+        <ol class="steps">
+          <li><h3>Encuentra tu equipo</h3><p>Compara equipos y evalúa cuánto tiempo lo necesitas para tu rodaje.</p></li>
+          <li><h3>Coordina la reserva</h3><p>Elige un alquiler por horas o días y acuerda la entrega con el propietario.</p></li>
+          <li><h3>Registra su estado</h3><p>Usa un checklist con fotos al recibir y devolver el equipo.</p></li>
+        </ol>
+      </div>
+    </section>
+    <section class="section wrap" id="publicar" tabindex="-1">
+      <div class="owner-panel">
+        <h2>Publica un equipo</h2>
+        <p>El flujo para propietarios contempla registrar fotos, disponibilidad, precio y condiciones de entrega. La publicación de anuncios forma parte de la aplicación propuesta.</p>
+        <a class="button button-light" href="#preguntas">Ver preguntas frecuentes</a>
+      </div>
+    </section>
+    <section class="section wrap faq" id="preguntas" tabindex="-1">
+      <h2>Preguntas frecuentes</h2>
+      <details><summary>¿Puedo alquilar por horas?</summary><p>Rodaya contempla alquileres por horas o días, según la disponibilidad y las condiciones del equipo.</p></details>
+      <details><summary>¿Cómo se verifica el estado del equipo?</summary><p>El flujo de alquiler incluye un registro fotográfico al momento de la entrega y otro durante la devolución.</p></details>
+      <details><summary>¿Puedo reservar desde esta página?</summary><p>Esta landing es una demostración académica. El catálogo y sus precios son ilustrativos. Las reservas se contemplan en la aplicación propuesta.</p></details>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap topbar"><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">▶</span> Rodaya</a><p>Proyecto académico de IHC y Tecnologías Móviles</p></div>
+  </footer>
+</body>
+</html>
