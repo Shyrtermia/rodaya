@@ -3,99 +3,484 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Rodaya conecta a estudiantes y propietarios para alquilar equipos audiovisuales por horas o días.">
-  <title>Rodaya | Alquila equipos para tu rodaje</title>
+  <meta name="description" content="Rodaya conecta a estudiantes para alquilar cámaras, lentes, luces y audio por horas o días, con verificación por carné y checklist fotográfico.">
+  <meta name="theme-color" content="#1e3a8a">
+  <title>Rodaya | Alquila equipos audiovisuales a otros estudiantes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="stylesheet" href="styles.css">
   <script src="main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="site-header" id="inicio">
+
+  <!-- Iconos -->
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6.2 15.5c.6-1.3 1.6-1.9 2.8-1.9s2.2.6 2.8 1.9M14 10h4M14 13h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 016.5 5H18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="4" y="8" width="16" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="13.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-return" viewBox="0 0 24 24"><path d="M9 14l-4-4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h9a5 5 0 010 10h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="M3 11l4-4 5 3 5-3 4 4-9 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10l-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z" fill="var(--heart-fill, none)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" fill="currentColor"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <header class="site-header" id="site-header">
     <div class="wrap topbar">
-      <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">▶</span> Rodaya</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menú</button>
-      <nav id="navigation" aria-label="Navegación principal">
-        <a href="#equipos">Explorar equipos</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#preguntas">Preguntas frecuentes</a>
-        <a class="button button-outline" href="#publicar">Publicar equipo</a>
-      </nav>
+      <a class="brand" href="#inicio" aria-label="Rodaya, ir al inicio"><span class="brand-mark" aria-hidden="true"></span>RODAYA</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Abrir menú">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <div class="nav-panel" id="navigation">
+        <nav aria-label="Navegación principal">
+          <a href="#equipos" data-spy="equipos">Explorar</a>
+          <a href="#como-funciona" data-spy="como-funciona">Cómo funciona</a>
+          <a href="#gana" data-spy="gana">Publicar equipo</a>
+          <a href="#testimonios" data-spy="testimonios">Comunidad</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="fav-link" href="#equipos" aria-label="Favoritos guardados: 0" id="fav-link">
+            <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><span class="fav-count" id="fav-count" hidden>0</span>
+          </a>
+          <button class="button button-accent-outline" type="button" data-open-dialog="acceso" data-mode="ingresar">Ingresar</button>
+          <button class="button" type="button" data-open-dialog="acceso" data-mode="crear">Crear cuenta</button>
+        </div>
+      </div>
     </div>
   </header>
+
   <main id="contenido">
-    <section class="hero">
+    <!-- HU01 -->
+    <section class="hero" id="inicio">
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="wrap hero-layout">
-        <div>
-          <p class="eyebrow">Alquiler audiovisual para estudiantes</p>
-          <h1>Alquila equipos para tu <span>rodaje.</span></h1>
-          <p class="hero-copy">Encuentra cámaras, sonido e iluminación para tu próximo proyecto. Alquila por horas o días y coordina la entrega con el propietario.</p>
-          <div class="actions">
-            <a class="button" href="#equipos">Explorar equipos <span aria-hidden="true">→</span></a>
-            <a class="button button-outline" href="#publicar">Publicar equipo</a>
+        <div class="hero-text">
+          <p class="pill reveal"><span class="dot" aria-hidden="true"></span>Hecho por y para estudiantes audiovisuales</p>
+          <h1 class="reveal">Alquila equipos audiovisuales a <span class="highlight">otros estudiantes</span></h1>
+          <p class="hero-copy reveal">Cámaras, lentes, luces y audio por horas o días, con verificación por carné y checklist fotográfico en cada entrega.</p>
+          <div class="actions reveal">
+            <a class="button button-lg" href="#equipos">Buscar equipos</a>
+            <a class="button button-lg button-accent-outline" href="#gana">Publicar mi equipo</a>
+          </div>
+          <ul class="hero-facts reveal" aria-label="Datos clave">
+            <li><strong><span data-count="10">10</span> %</strong><span>comisión por alquiler</span></li>
+            <li><strong><span data-count="20">20</span> %</strong><span>de garantía reembolsable</span></li>
+            <li><strong><span data-count="24">24</span> h</strong><span>para reportar daños</span></li>
+          </ul>
+        </div>
+        <div class="hero-visual reveal">
+          <figure class="photo hero-photo">
+            <img src="https://images.unsplash.com/photo-1758390851386-79c99432120e?auto=format&fit=crop&w=1100&q=75" alt="Realizador grabando con una cámara sobre un estabilizador al aire libre" width="1100" height="1300" fetchpriority="high" onerror="this.closest('.photo').classList.add('no-photo')">
+            <div class="photo-fallback" aria-hidden="true">
+              <svg viewBox="0 0 560 360" preserveAspectRatio="xMidYMid slice"><rect width="560" height="360" fill="#DBEAFE"/><path d="M0 270 C140 230 300 250 560 210 V360 H0Z" fill="#BFDBFE"/><path d="M0 310 C180 285 380 300 560 275 V360 H0Z" fill="#93C5FD"/><circle cx="452" cy="78" r="40" fill="#FDBA74"/><polygon points="150,112 250,140 250,176 150,148" fill="#FEF3C7"/><rect x="82" y="92" width="72" height="56" rx="4" fill="#1F2937"/><rect x="89" y="99" width="58" height="42" rx="2" fill="#FEF3C7"/><path d="M118 148V286M118 286L90 316M118 286L146 316" stroke="#1F2937" stroke-width="5" stroke-linecap="round"/><circle cx="262" cy="182" r="17" fill="#7C2D12"/><rect x="244" y="202" width="36" height="58" rx="10" fill="#C2410C"/><rect x="248" y="258" width="12" height="44" rx="4" fill="#1E3A8A"/><rect x="264" y="258" width="12" height="44" rx="4" fill="#1E3A8A"/><path d="M368 214L340 302M368 214L396 302M368 214V302" stroke="#1F2937" stroke-width="5" stroke-linecap="round"/><rect x="330" y="176" width="70" height="40" rx="6" fill="#1F2937"/><circle cx="350" cy="196" r="13" fill="#1D4ED8"/><circle cx="428" cy="168" r="18" fill="#92400E"/><rect x="410" y="190" width="38" height="70" rx="11" fill="#1D4ED8"/><rect x="414" y="258" width="13" height="46" rx="4" fill="#1E3A8A"/><rect x="431" y="258" width="13" height="46" rx="4" fill="#1E3A8A"/></svg>
+            </div>
+          </figure>
+          <div class="float-card fc-verify" aria-hidden="true">
+            <span class="badge-icon badge-green"><svg class="icon"><use href="#i-check"/></svg></span>
+            <div><strong>DNI y carné verificados</strong><small>Valeria R. · Comunicación</small></div>
+          </div>
+          <div class="float-card fc-checklist" aria-hidden="true">
+            <div class="fc-row"><strong>Checklist de entrega</strong><small>6/6 fotos</small></div>
+            <div class="progress"><span style="--p: 100%"></span></div>
+          </div>
+          <div class="float-card fc-price" aria-hidden="true">
+            <small>Desde</small><strong>S/ 4 /h</strong>
           </div>
         </div>
-        <figure class="hero-image">
-          <img src="camera.jpg" alt="Cámara fotográfica con lente intercambiable" width="900" height="630">
-        </figure>
       </div>
-    </section>
-    <section class="section wrap" id="equipos" tabindex="-1">
-      <h2>Explora equipos</h2>
-      <p>Filtra el catálogo de demostración por categoría.</p>
-      <div class="filters" aria-label="Categorías de equipos">
-        <button type="button" data-filter="all" aria-pressed="true">Todos</button>
-        <button type="button" data-filter="camera" aria-pressed="false">Cámaras y lentes</button>
-        <button type="button" data-filter="audio" aria-pressed="false">Sonido</button>
-        <button type="button" data-filter="lighting" aria-pressed="false">Iluminación</button>
-      </div>
-      <p class="sr-only" id="filter-status" role="status"></p>
-      <div class="card-grid">
-        <article class="equipment-card" data-category="camera">
-          <p class="category">Cámaras y lentes</p>
-          <h3>Cámara mirrorless</h3>
-          <p>Cuerpo y lente para prácticas de fotografía o grabación.</p>
-          <p class="price">S/ 65 <span>por día</span></p>
-        </article>
-        <article class="equipment-card" data-category="audio">
-          <p class="category">Sonido</p>
-          <h3>Micrófonos inalámbricos</h3>
-          <p>Kit de dos micrófonos para entrevistas y diálogos.</p>
-          <p class="price">S/ 30 <span>por día</span></p>
-        </article>
-        <article class="equipment-card" data-category="lighting">
-          <p class="category">Iluminación</p>
-          <h3>Panel LED con trípode</h3>
-          <p>Luz continua para rodajes y sesiones en interiores.</p>
-          <p class="price">S/ 35 <span>por día</span></p>
-        </article>
-      </div>
-    </section>
-    <section class="section section-tint" id="como-funciona" tabindex="-1">
+
+      <!-- Buscador rápido -->
       <div class="wrap">
-        <h2>Cómo funciona</h2>
-        <ol class="steps">
-          <li><h3>Encuentra tu equipo</h3><p>Compara equipos y evalúa cuánto tiempo lo necesitas para tu rodaje.</p></li>
-          <li><h3>Coordina la reserva</h3><p>Elige un alquiler por horas o días y acuerda la entrega con el propietario.</p></li>
-          <li><h3>Registra su estado</h3><p>Usa un checklist con fotos al recibir y devolver el equipo.</p></li>
-        </ol>
+        <form class="quick-search reveal" id="quick-search" role="search" aria-label="Búsqueda rápida de equipos">
+          <div class="qs-field">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <label for="qs-texto" class="sr-only">¿Qué necesitas?</label>
+            <input id="qs-texto" type="search" placeholder="¿Qué necesitas? Ej. cámara, micrófono" autocomplete="off">
+          </div>
+          <div class="qs-field">
+            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
+            <label for="qs-categoria" class="sr-only">Categoría</label>
+            <select id="qs-categoria">
+              <option value="all">Todas las categorías</option>
+              <option value="camaras">Cámaras</option>
+              <option value="lentes">Lentes</option>
+              <option value="iluminacion">Iluminación</option>
+              <option value="audio">Audio</option>
+              <option value="estabilizadores">Estabilizadores</option>
+            </select>
+          </div>
+          <div class="qs-field">
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <label for="qs-fecha" class="sr-only">Fecha de rodaje</label>
+            <input id="qs-fecha" type="date">
+          </div>
+          <button class="button button-lg" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Buscar</button>
+        </form>
       </div>
     </section>
-    <section class="section wrap" id="publicar" tabindex="-1">
-      <div class="owner-panel">
-        <h2>Publica un equipo</h2>
-        <p>El flujo para propietarios contempla registrar fotos, disponibilidad, precio y condiciones de entrega. La publicación de anuncios forma parte de la aplicación propuesta.</p>
-        <a class="button button-light" href="#preguntas">Ver preguntas frecuentes</a>
+
+    <!-- Por qué Rodaya -->
+    <section class="section wrap" aria-labelledby="por-que-titulo">
+      <div class="section-head reveal">
+        <p class="eyebrow">Por qué Rodaya</p>
+        <h2 id="por-que-titulo">Alquilar entre estudiantes, sin miedo y sin garantías imposibles</h2>
+      </div>
+      <div class="benefits">
+        <article class="benefit reveal">
+          <span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+          <h3>Tarifas estudiantiles</h3>
+          <p>Alquila por horas o días y paga solo el tiempo de tu rodaje.</p>
+        </article>
+        <article class="benefit reveal">
+          <span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-id"/></svg></span>
+          <h3>Verificación con carné y DNI</h3>
+          <p>Todos los usuarios validan su identidad antes de alquilar.</p>
+        </article>
+        <article class="benefit reveal">
+          <span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg></span>
+          <h3>Checklist fotográfico</h3>
+          <p>Fotos del equipo en la entrega y la devolución como respaldo.</p>
+        </article>
       </div>
     </section>
-    <section class="section wrap faq" id="preguntas" tabindex="-1">
-      <h2>Preguntas frecuentes</h2>
-      <details><summary>¿Puedo alquilar por horas?</summary><p>Rodaya contempla alquileres por horas o días, según la disponibilidad y las condiciones del equipo.</p></details>
-      <details><summary>¿Cómo se verifica el estado del equipo?</summary><p>El flujo de alquiler incluye un registro fotográfico al momento de la entrega y otro durante la devolución.</p></details>
-      <details><summary>¿Puedo reservar desde esta página?</summary><p>Esta landing es una demostración académica. El catálogo y sus precios son ilustrativos. Las reservas se contemplan en la aplicación propuesta.</p></details>
+
+    <!-- HU02 -->
+    <section class="section wrap" id="como-funciona" tabindex="-1" aria-labelledby="como-titulo">
+      <div class="section-head reveal">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2 id="como-titulo">Cuatro pasos, de la búsqueda a la devolución</h2>
+      </div>
+      <div class="tabs reveal" role="tablist" aria-label="Elige tu rol">
+        <button type="button" role="tab" id="tab-alquilar" aria-selected="true" aria-controls="panel-alquilar">Quiero alquilar</button>
+        <button type="button" role="tab" id="tab-publicar" aria-selected="false" aria-controls="panel-publicar" tabindex="-1">Quiero publicar</button>
+        <span class="tab-indicator" aria-hidden="true"></span>
+      </div>
+      <ol class="steps" role="tabpanel" id="panel-alquilar" aria-labelledby="tab-alquilar">
+        <li><span class="step-num" aria-hidden="true">1</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></span><h3>Busca por fecha y categoría</h3><p>Filtra por tipo de equipo, distrito y fecha de rodaje.</p></li>
+        <li><span class="step-num" aria-hidden="true">2</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Reserva y paga en la app</h3><p>Ves el desglose de tarifa y garantía antes de pagar.</p></li>
+        <li><span class="step-num" aria-hidden="true">3</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg></span><h3>Recibe con checklist fotográfico</h3><p>Ambos registran fotos del estado del equipo.</p></li>
+        <li><span class="step-num" aria-hidden="true">4</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-return"/></svg></span><h3>Devuelve y recupera tu garantía</h3><p>Sin observaciones, la garantía se libera al instante.</p></li>
+      </ol>
+      <ol class="steps" role="tabpanel" id="panel-publicar" aria-labelledby="tab-publicar" hidden>
+        <li><span class="step-num" aria-hidden="true">1</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg></span><h3>Publica tu equipo</h3><p>Sube fotos, especificaciones y tarifas por hora y día.</p></li>
+        <li><span class="step-num" aria-hidden="true">2</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-id"/></svg></span><h3>Acepta solicitudes</h3><p>Revisa la verificación y la reputación de quien alquila.</p></li>
+        <li><span class="step-num" aria-hidden="true">3</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-handshake"/></svg></span><h3>Entrega con checklist</h3><p>Coordina un punto de encuentro cerca al campus.</p></li>
+        <li><span class="step-num" aria-hidden="true">4</span><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Cobra tus ganancias</h3><p>Recibes el pago al cerrar la devolución.</p></li>
+      </ol>
+    </section>
+
+    <!-- HU08 -->
+    <section class="section section-white" id="equipos" tabindex="-1" aria-labelledby="equipos-titulo">
+      <div class="wrap">
+        <div class="section-head head-row reveal">
+          <div>
+            <p class="eyebrow">Catálogo</p>
+            <h2 id="equipos-titulo">Equipos destacados</h2>
+          </div>
+          <div class="catalog-tools">
+            <div class="segmented" role="group" aria-label="Mostrar precio">
+              <button type="button" data-unit="day" aria-pressed="true">Por día</button>
+              <button type="button" data-unit="hour" aria-pressed="false">Por hora</button>
+            </div>
+            <label class="sr-only" for="sort">Ordenar</label>
+            <select id="sort" class="select-sm">
+              <option value="destacados">Destacados</option>
+              <option value="precio">Menor precio</option>
+              <option value="rating">Mejor calificados</option>
+            </select>
+          </div>
+        </div>
+        <div class="chips reveal" role="group" aria-label="Filtrar por categoría">
+          <button type="button" data-filter="all" aria-pressed="true">Todos</button>
+          <button type="button" data-filter="camaras" aria-pressed="false">Cámaras</button>
+          <button type="button" data-filter="lentes" aria-pressed="false">Lentes</button>
+          <button type="button" data-filter="iluminacion" aria-pressed="false">Iluminación</button>
+          <button type="button" data-filter="audio" aria-pressed="false">Audio</button>
+          <button type="button" data-filter="estabilizadores" aria-pressed="false">Estabilizadores</button>
+        </div>
+        <p class="results-line" id="filter-status" role="status" aria-live="polite"></p>
+        <div class="card-row" id="equipment-list"></div>
+        <div class="empty" id="empty" hidden>
+          <p><strong>No encontramos equipos con esos filtros.</strong></p>
+          <button class="button button-accent-outline" type="button" id="clear-filters">Limpiar filtros</button>
+        </div>
+        <p class="swipe-hint" aria-hidden="true">Desliza para ver más equipos →</p>
+        <p class="demo-note">Catálogo de demostración: equipos, propietarios y precios ilustrativos.</p>
+      </div>
+    </section>
+
+    <!-- HU03 -->
+    <section class="section wrap" id="gana" tabindex="-1" aria-labelledby="gana-titulo">
+      <div class="owner-band reveal">
+        <div class="owner-copy">
+          <p class="eyebrow eyebrow-light">Para propietarios</p>
+          <h2 id="gana-titulo">Gana con tu equipo</h2>
+          <p>Estima cuánto ganarías alquilando tu equipo cuando no lo usas.</p>
+          <form class="calc" id="calc-form" novalidate>
+            <div class="field">
+              <label for="calc-tipo">Tipo de equipo</label>
+              <select id="calc-tipo" name="tipo">
+                <option data-rate="50">Cámara</option>
+                <option data-rate="30">Lente</option>
+                <option data-rate="40">Iluminación</option>
+                <option data-rate="25">Audio</option>
+                <option data-rate="35">Estabilizador</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-tarifa">Tarifa por día (S/)</label>
+              <input id="calc-tarifa" name="tarifa" type="number" inputmode="decimal" min="1" step="1" value="50" aria-describedby="calc-error">
+            </div>
+            <div class="field field-range">
+              <label for="calc-dias">Días de alquiler al mes <output id="dias-out" for="calc-dias-range">6</output></label>
+              <input id="calc-dias-range" type="range" min="1" max="31" value="6" aria-label="Días de alquiler al mes (deslizador)">
+              <input id="calc-dias" name="dias" type="number" inputmode="numeric" min="1" max="31" step="1" value="6" aria-describedby="calc-error">
+            </div>
+            <button class="button button-light calc-btn" type="submit">Calcular</button>
+          </form>
+          <p class="form-error" id="calc-error" role="alert"></p>
+        </div>
+        <div class="owner-result">
+          <figure class="photo owner-photo">
+            <img src="https://images.pexels.com/photos/7383646/pexels-photo-7383646.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Estudio con luces softbox listas para un rodaje" loading="lazy" onerror="this.closest('.photo').classList.add('no-photo')">
+            <div class="photo-fallback" aria-hidden="true"></div>
+          </figure>
+          <dl class="calc-result" id="calc-result" aria-live="polite">
+            <div><dt>Ingreso bruto</dt><dd id="r-bruto">S/ 300</dd></div>
+            <div><dt>Comisión Rodaya (10 %)</dt><dd id="r-comision">S/ 30</dd></div>
+            <div class="net"><dt>Ganancia neta al mes</dt><dd id="r-neto">S/ 270</dd></div>
+            <div class="year"><dt>En un ciclo de 4 meses</dt><dd id="r-ciclo">S/ 1 080</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- HU04 -->
+    <section class="section wrap" id="tarifas" tabindex="-1" aria-labelledby="tarifas-titulo">
+      <div class="fees reveal">
+        <div>
+          <p class="eyebrow">Transparencia</p>
+          <h2 id="tarifas-titulo">Tarifas y garantía</h2>
+          <p>Rodaya cobra 10 % de comisión por alquiler completado. La garantía es 20 % del valor referencial del equipo y se devuelve al cerrar el checklist de devolución sin observaciones.</p>
+          <div class="fee-actions">
+            <button class="button button-accent-outline" type="button" aria-expanded="false" aria-controls="ejemplo" id="btn-ejemplo">Ver ejemplo</button>
+            <button class="button button-accent-outline" type="button" aria-expanded="false" aria-controls="garantia-info" id="btn-garantia">¿Cuándo recupero mi garantía?</button>
+          </div>
+          <div class="info-box" id="garantia-info" hidden>
+            <ol class="timeline">
+              <li><strong>Devolución</strong> Ambos completan el checklist con fotos.</li>
+              <li><strong>Sin observaciones</strong> La garantía se libera de inmediato.</li>
+              <li><strong>Con daño reportado</strong> Queda retenida hasta resolver el caso (plazo de reporte: 24 h).</li>
+            </ol>
+          </div>
+        </div>
+        <div class="example" id="ejemplo" hidden>
+          <p class="example-title">Ejemplo: cámara valorizada en S/ 3 000, 2 días</p>
+          <table>
+            <thead><tr><th scope="col">Concepto</th><th scope="col">Monto</th></tr></thead>
+            <tbody>
+              <tr><td>Alquiler (S/ 70 × 2 días)</td><td>S/ 140</td></tr>
+              <tr><td>Garantía reembolsable (20 %)</td><td>S/ 600</td></tr>
+              <tr class="total"><td>Total a pagar</td><td>S/ 740</td></tr>
+              <tr class="muted"><td>Comisión Rodaya (se descuenta al propietario)</td><td>S/ 14</td></tr>
+            </tbody>
+          </table>
+          <div class="bar-split" aria-hidden="true"><span class="b1" style="flex:140"></span><span class="b2" style="flex:600"></span></div>
+          <p class="bar-legend"><span class="sw sw1"></span>Alquiler <span class="sw sw2"></span>Garantía que vuelve a ti</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HU07 -->
+    <section class="section section-white" id="testimonios" tabindex="-1" aria-labelledby="testimonios-titulo">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Comunidad</p>
+          <h2 id="testimonios-titulo">Testimonios</h2>
+        </div>
+        <div class="carousel reveal" aria-roledescription="carrusel" aria-label="Testimonios de usuarios">
+          <button class="round-btn" type="button" id="t-prev" aria-label="Testimonio anterior"><svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+          <div class="quote-card" aria-live="polite">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote id="t-quote"></blockquote>
+            <div class="quote-author">
+              <span class="avatar" id="t-avatar" aria-hidden="true"></span>
+              <p class="quote-meta" id="t-meta"></p>
+            </div>
+          </div>
+          <button class="round-btn" type="button" id="t-next" aria-label="Siguiente testimonio"><svg class="icon" aria-hidden="true"><use href="#i-chev-r"/></svg></button>
+          <div class="dots" id="t-dots" role="group" aria-label="Elegir testimonio"></div>
+          <p class="quote-count" id="t-count"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HU05 -->
+    <section class="section wrap faq-layout" id="preguntas" tabindex="-1" aria-labelledby="faq-titulo">
+      <div class="section-head reveal">
+        <p class="eyebrow">Ayuda</p>
+        <h2 id="faq-titulo">Preguntas frecuentes</h2>
+        <p>¿No encuentras tu respuesta? <a href="#contacto">Escríbenos</a>.</p>
+      </div>
+      <div class="faq reveal">
+        <details name="faq">
+          <summary>¿Cómo verifican mi identidad?</summary>
+          <div class="faq-body"><p>Validamos tu DNI con una selfie y tu carné o fotocheck vigente. El estado de la revisión aparece en tu perfil.</p></div>
+        </details>
+        <details name="faq">
+          <summary>¿Cuánto es la garantía y cuándo la recupero?</summary>
+          <div class="faq-body"><p>La garantía es 20 % del valor referencial del equipo. Se libera cuando el checklist de devolución se cierra sin observaciones.</p></div>
+        </details>
+        <details name="faq">
+          <summary>¿Qué pasa si el equipo se daña?</summary>
+          <div class="faq-body"><p>El propietario tiene 24 horas para reportar el daño con la comparación de fotos de entrega y devolución. La garantía queda retenida mientras se resuelve el caso y ambas partes pueden responder con evidencias.</p></div>
+        </details>
+        <details name="faq">
+          <summary>¿Puedo cancelar una reserva?</summary>
+          <div class="faq-body"><p>Sí. Si faltan 3 días o más para el inicio, se devuelve el 100 %. Si cancelas muy cerca del inicio, se devuelve el 50 % de la tarifa y la garantía completa.</p></div>
+        </details>
+        <details name="faq">
+          <summary>¿Cómo y cuándo pago?</summary>
+          <div class="faq-body"><p>Pagas dentro de la app cuando el propietario acepta tu solicitud, con tarjeta o billetera digital. Así la reserva queda confirmada y con comprobante.</p></div>
+        </details>
+        <details name="faq">
+          <summary>¿Cuánto cobra Rodaya?</summary>
+          <div class="faq-body"><p>Rodaya cobra 10 % por cada alquiler completado. Esta comisión se descuenta al propietario; el arrendatario paga la tarifa y la garantía.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- HU06 -->
+    <section class="section wrap" id="contacto" tabindex="-1" aria-labelledby="contacto-titulo">
+      <div class="contact reveal">
+        <div class="contact-copy">
+          <p class="eyebrow">Contacto</p>
+          <h2 id="contacto-titulo">Contáctanos</h2>
+          <p>Envíanos tu consulta y te responderemos en 24 h.</p>
+          <ul class="contact-points">
+            <li><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>Respuesta en menos de 24 horas</li>
+            <li><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>Entregas en puntos cercanos a tu campus</li>
+            <li><span class="badge-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>Tus datos institucionales se mantienen confidenciales</li>
+          </ul>
+        </div>
+        <form class="panel contact-form" id="contact-form" novalidate>
+          <div class="field">
+            <label for="c-nombre">Nombre completo *</label>
+            <input id="c-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required aria-describedby="e-nombre">
+            <p class="field-error" id="e-nombre"></p>
+          </div>
+          <div class="field">
+            <label for="c-correo">Correo *</label>
+            <input id="c-correo" name="correo" type="email" autocomplete="email" placeholder="nombre@correo.com" required aria-describedby="e-correo">
+            <p class="field-error" id="e-correo"></p>
+          </div>
+          <div class="field">
+            <label for="c-tipo">Tipo de usuario *</label>
+            <select id="c-tipo" name="tipo" required>
+              <option>Estudiante</option>
+              <option>Propietario de equipos</option>
+              <option>Negocio de alquiler</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-mensaje">Mensaje * <span class="counter" id="c-counter">0/400</span></label>
+            <textarea id="c-mensaje" name="mensaje" rows="4" maxlength="400" placeholder="Escribe tu consulta" required aria-describedby="e-mensaje"></textarea>
+            <p class="field-error" id="e-mensaje"></p>
+          </div>
+          <button class="button button-block button-lg" type="submit" id="contact-submit">Enviar</button>
+          <p class="form-success" id="contact-success" role="status"></p>
+        </form>
+      </div>
     </section>
   </main>
+
   <footer class="site-footer">
-    <div class="wrap topbar"><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">▶</span> Rodaya</a><p>Proyecto académico de IHC y Tecnologías Móviles</p></div>
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand brand-light" href="#inicio"><span class="brand-mark" aria-hidden="true"></span>RODAYA</a>
+        <p>Alquiler de equipos audiovisuales entre estudiantes, con verificación y checklist fotográfico.</p>
+      </div>
+      <nav aria-label="Secciones">
+        <p class="footer-title">Explora</p>
+        <a href="#equipos">Equipos</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#gana">Publicar equipo</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+      </nav>
+      <nav aria-label="Legal">
+        <p class="footer-title">Rodaya</p>
+        <a href="#preguntas">Términos</a>
+        <a href="#preguntas">Privacidad</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>RODAYA © 2026 · Proyecto académico de IHC y Tecnologías Móviles · UPC</p>
+      <p>Fotos: <a href="https://unsplash.com/license" rel="noopener" target="_blank">Unsplash</a> y <a href="https://www.pexels.com/license/" rel="noopener" target="_blank">Pexels</a></p>
+    </div>
   </footer>
+
+  <button class="to-top" type="button" id="to-top" aria-label="Volver arriba"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Ficha del equipo (HU08) -->
+  <dialog class="modal modal-detail" id="detalle" aria-labelledby="d-nombre">
+    <button class="modal-close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="detail-grid">
+      <figure class="photo detail-photo" id="d-photo"></figure>
+      <div class="detail-info">
+        <p class="card-cat" id="d-cat"></p>
+        <h2 id="d-nombre"></h2>
+        <p class="card-meta" id="d-meta"></p>
+        <p id="d-desc"></p>
+        <h3 class="mini-title">Incluye</h3>
+        <ul class="includes" id="d-incluye"></ul>
+        <div class="owner-chip" id="d-owner"></div>
+      </div>
+    </div>
+    <div class="booking">
+      <div class="booking-row">
+        <div class="segmented" role="group" aria-label="Modalidad">
+          <button type="button" data-mode="hour" aria-pressed="false">Por horas</button>
+          <button type="button" data-mode="day" aria-pressed="true">Por días</button>
+        </div>
+        <div class="stepper" role="group" aria-label="Duración">
+          <button type="button" id="qty-minus" aria-label="Menos"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <output id="qty" aria-live="polite">2 días</output>
+          <button type="button" id="qty-plus" aria-label="Más"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+      </div>
+      <dl class="breakdown">
+        <div><dt id="b-label">Alquiler</dt><dd id="b-alquiler"></dd></div>
+        <div><dt>Garantía reembolsable (20 %)</dt><dd id="b-garantia"></dd></div>
+        <div class="total"><dt>Total a pagar</dt><dd id="b-total"></dd></div>
+      </dl>
+      <a class="button button-block button-lg" href="#contacto" data-close>Quiero reservarlo</a>
+      <p class="modal-note">Simulación: las reservas se realizarán desde la app móvil de Rodaya.</p>
+    </div>
+  </dialog>
+
+  <!-- Ingresar / Crear cuenta -->
+  <dialog class="modal modal-sm" id="acceso" aria-labelledby="a-titulo">
+    <button class="modal-close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <span class="badge-icon badge-lg"><svg class="icon" aria-hidden="true"><use href="#i-id"/></svg></span>
+    <h2 id="a-titulo">Crear cuenta</h2>
+    <p id="a-texto"></p>
+    <a class="button button-block" href="#contacto" data-close>Dejar mis datos</a>
+  </dialog>
 </body>
 </html>
